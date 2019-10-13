@@ -4,11 +4,25 @@
  * @param config - private student ability to perform for different focus modes
  * @returns number of weeks needed for finish education
  */
-module.exports = function getTimeForEducation(
-    focus = 'family', 
+
+ const BASIC_LEARN = 500;
+ const ADVANCED_LEARN = 800;
+
+module.exports =
+function getTimeForEducation(
+    focus = 'family',
     knowsProgramming = true,
     config = {family: 4}
     ) {
-      return 0;
+      const time = (knowsProgramming) ? ADVANCED_LEARN / config[focus] : (ADVANCED_LEARN + BASIC_LEARN) / config[focus];
+      return Math.ceil(time);
   };
-  
+
+  const defaultStudentSpeedConfig = {
+      family: 4,
+      friends: 10,
+      normal_life: 20,
+      profession: 30,
+      carrier: 40,
+      top_peformance: 60
+  }
